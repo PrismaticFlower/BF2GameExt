@@ -2,6 +2,8 @@
 
 #include "apply_patches.hpp"
 #include "cfile.hpp"
+#include "exe_table.hpp"
+#include "game_tables.hpp"
 #include "patch_table.hpp"
 
 static const uintptr_t unrelocated_executable_base = 0x400000;
@@ -44,9 +46,51 @@ static bool apply_patch(const patch& patch, const uintptr_t relocated_executable
       return false;
    }
 
-   memcpy(patch_address, &patch.replacement_value, sizeof(patch.replacement_value));
+   const uint32_t replacement_value =
+      patch.flags.replacement_relative_for_call
+         ? (intptr_t)patch.replacement_value - (intptr_t)patch_address - sizeof(uint32_t)
+         : patch.replacement_value;
+
+   memcpy(patch_address, &replacement_value, sizeof(replacement_value));
 
    return true;
+}
+
+static bool select_executable(const uintptr_t relocated_executable_base,
+                              const slim_vector<section_info>& sections, cfile& log)
+{
+   for (const exe_table_entry& entry : exe_table) {
+      log.printf("Checking executable against patch list: %s\n", entry.name);
+
+      if (entry.id_address_is_file_offset) {
+         const char* id_address = resolve_file_address(entry.id_address, sections);
+
+         if (not id_address or not memeq(id_address, sizeof(entry.expected_id), &entry.expected_id,
+                                         sizeof(entry.expected_id))) {
+            continue;
+         }
+      }
+      else {
+         if (not memeq(resolve_address(entry.id_address, relocated_executable_base),
+                       sizeof(entry.expected_id), &entry.expected_id, sizeof(entry.expected_id))) {
+            continue;
+         }
+      }
+
+      if (entry.id == EXE_INVALID) {
+         log.printf("Bad executable table entry: %s", entry.name);
+
+         continue;
+      }
+
+      log.printf("Identified executable as: %s\nApplying patches.\n", entry.name);
+
+      current_exe_id = entry.id;
+
+      return true;
+   }
+
+   return false;
 }
 
 bool apply_patches(const uintptr_t relocated_executable_base, const slim_vector<section_info>& sections)
@@ -55,49 +99,33 @@ bool apply_patches(const uintptr_t relocated_executable_base, const slim_vector<
 
    if (not log) return false;
 
-   for (const exe_patch_list& exe_list : patch_lists) {
-      log.printf("Checking executable against patch list: %s\n", exe_list.name);
+   if (not select_executable(relocated_executable_base, sections, log)) {
+      log.printf("Couldn't identify executable. Unable to patch.\n");
 
-      if (exe_list.id_address_is_file_offset) {
-         const char* id_address = resolve_file_address(exe_list.id_address, sections);
+      return false;
+   }
 
-         if (not id_address or not memeq(id_address, sizeof(exe_list.expected_id),
-                                         &exe_list.expected_id, sizeof(exe_list.expected_id))) {
-            continue;
-         }
-      }
-      else {
-         if (not memeq(resolve_address(exe_list.id_address, relocated_executable_base),
-                       sizeof(exe_list.expected_id), &exe_list.expected_id, sizeof(exe_list.expected_id))) {
-            continue;
-         }
-      }
+   initialize_game_tables(current_exe_id, relocated_executable_base);
 
-      log.printf("Identified executable as: %s\nApplying patches.\n", exe_list.name);
+   for (const patch_set& set : patch_lists[current_exe_id]) {
+      log.printf("Applying patch set: %s\n", set.name);
 
-      for (const patch_set& set : exe_list.patches) {
-         log.printf("Applying patch set: %s\n", set.name);
-
-         for (const patch& patch : set.patches) {
-            if (not apply_patch(patch, relocated_executable_base, sections)) {
-               log.printf(R"(Failed to apply patch
+      for (const patch& patch : set.patches) {
+         if (not apply_patch(patch, relocated_executable_base, sections)) {
+            log.printf(R"(Failed to apply patch
    address = %x 
    expected_value = %x 
    replacement_value = %x
-   flags = {.file_offset = %i, .expected_is_va = %i}
+   flags = {.file_offset = %i, .expected_is_va = %i, replacement_relative_for_call = %i}
 )",
-                          patch.address, patch.expected_value, patch.replacement_value,
-                          (int)patch.flags.file_offset, (int)patch.flags.expected_is_va);
+                       patch.address, patch.expected_value, patch.replacement_value,
+                       (int)patch.flags.file_offset, (int)patch.flags.expected_is_va,
+                       (int)patch.flags.replacement_relative_for_call);
 
-               return false;
-            }
+            return false;
          }
       }
-
-      return true;
    }
 
-   log.printf("Couldn't identify executable. Unable to patch.\n");
-
-   return false;
+   return true;
 }
