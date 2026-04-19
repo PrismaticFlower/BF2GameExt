@@ -5,6 +5,7 @@ Tool for patching SWBF2 (2005) to extend it's memory limits and fix bugs.
 - DLC Mission Limit Extension. Increased from 500 to 4096. This lets more mods be installed at once, provided that don't conflict and no other limits are hit.
 - Runtime Heap Extension. This makes it **much** harder for modders to hit "Allocating X bytes failed - no free blocks left in Heap 5 (Runtime)" errors.
 - SoundParameterized Layer Limit Extension. This keeps maps with lot's of flyers and entities that use `EngineSound` from crashing.
+- SkyObjectClass Limit Extension. This prevents a buffer overflow when too many sky objects were created that could crash the game.
 - Terrain Detail Map Cleanup. This fixes a crash with multiple maps in a playlist and switching to one without a terrain detail map after playing another one.
 
 ## Supported Versions
