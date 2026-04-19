@@ -56,6 +56,20 @@ static bool apply_patch(const patch& patch, const uintptr_t relocated_executable
    return true;
 }
 
+static bool apply_patch(const byte_patch& patch, const uintptr_t relocated_executable_base,
+                        const slim_vector<section_info>& sections)
+{
+   char* patch_address = resolve_address(patch.address, relocated_executable_base);
+
+   if (not memeq(patch_address, patch.byte_count, patch.expected_bytes, patch.byte_count)) {
+      return false;
+   }
+
+   memcpy(patch_address, patch.replacement_bytes, patch.byte_count);
+
+   return true;
+}
+
 static bool select_executable(const uintptr_t relocated_executable_base,
                               const slim_vector<section_info>& sections, cfile& log)
 {
@@ -121,6 +135,29 @@ bool apply_patches(const uintptr_t relocated_executable_base, const slim_vector<
                        patch.address, patch.expected_value, patch.replacement_value,
                        (int)patch.flags.file_offset, (int)patch.flags.expected_is_va,
                        (int)patch.flags.replacement_relative_for_call);
+
+            return false;
+         }
+      }
+
+      for (const byte_patch& patch : set.byte_patches) {
+         if (not apply_patch(patch, relocated_executable_base, sections)) {
+            log.printf(R"(Failed to apply byte patch
+   address = %x 
+   expected_value = )",
+                       patch.address);
+
+            for (size_t i = 0; i < patch.byte_count; ++i) {
+               log.printf("%02x", (int)patch.replacement_bytes[i]);
+            }
+
+            log.printf("\n   replacement_value = \n");
+
+            for (size_t i = 0; i < patch.byte_count; ++i) {
+               log.printf("%02x", (int)patch.expected_bytes[i]);
+            }
+
+            log.printf("\n");
 
             return false;
          }

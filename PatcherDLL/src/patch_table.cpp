@@ -57,6 +57,17 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
                patch{0x00452ed2, 0x392f3a, (uintptr_t)&ReadTerrain_Shim, {.replacement_relative_for_call = true}},
             },
       },
+
+      patch_set{
+         .name = "SkyObjectClass Limit Extension",
+         .patches =
+            {
+               patch{0x006c23b1, 0x00ba45cc, 0x401f0f /* 4 byte nop */, {.expected_is_va = true}},
+            },
+            .byte_patches = {
+               byte_patch{0x006c23ae, "\x41\x89\x0d", "\x0f\x1f\x00"},
+            },
+      },
    },
    
    // exe_id_GoG
@@ -100,6 +111,19 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
          .patches =
             {
                patch{0x0057a57f, 0x148f6d, (uintptr_t)&ReadTerrain_Shim, {.replacement_relative_for_call = true}},
+            },
+      },
+
+      patch_set{
+         .name = "SkyObjectClass Limit Extension",
+         .patches =
+            {
+               patch{0x00639e41, 0x01eb051c, 0x401f0f /* 4 byte nop */, {.expected_is_va = true}},
+               patch{0x00639e6a, 0x01eb051c, 0x401f0f /* 4 byte nop */, {.expected_is_va = true}},
+            },
+            .byte_patches = {
+               byte_patch{0x00639e3e, "\x41\x89\x0d", "\x0f\x1f\x00"},
+               byte_patch{0x00639e68, "\x40\xa3", "\x66\x90"},
             },
       },
    },
@@ -147,5 +171,19 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
                patch{0x0057980f, 0x148c4d, (uintptr_t)&ReadTerrain_Shim, {.replacement_relative_for_call = true}},
             },
       },
+
+      patch_set{
+         .name = "SkyObjectClass Limit Extension",
+         .patches =
+            {
+               patch{0x00638da1, 0x01eaf068, 0x401f0f /* 4 byte nop */, {.expected_is_va = true}},
+               patch{0x00638dca, 0x01eaf068, 0x401f0f /* 4 byte nop */, {.expected_is_va = true}},
+            },
+            .byte_patches = {
+               byte_patch{0x00638d9e, "\x41\x89\x0d", "\x0f\x1f\x00"},
+               byte_patch{0x00638dc8, "\x40\xa3", "\x66\x90"},
+            },
+      },
    },
 };
+
