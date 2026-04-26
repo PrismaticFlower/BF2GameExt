@@ -68,6 +68,19 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
                byte_patch{0x006c23ae, "\x41\x89\x0d", "\x0f\x1f\x00"},
             },
       },
+
+      patch_set{
+         .name = "PropGenerator::Update Loop Exit Condition",
+
+         .byte_patches = {
+            byte_patch{0x0073d314, "\x49", "\x33"},
+            // Swap two instructions so we have a convenient jump target for the above redirection.
+            // This allows jumping directly to relevant instructions for checking the cluster object count
+            // without doing any other work (and thus greatly reduced risk of introducing bugs).
+            byte_patch{0x0073d344, "\x8b\x54\x24\x40", "\x88\x44\x71\x01"},
+            byte_patch{0x0073d348, "\x88\x44\x71\x01", "\x8b\x54\x24\x40"},
+         },
+      },
    },
    
    // exe_id_GoG
@@ -126,6 +139,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
                byte_patch{0x00639e68, "\x40\xa3", "\x66\x90"},
             },
       },
+
+      patch_set{
+         .name = "PropGenerator::Update Loop Exit Condition",
+
+         .byte_patches = {
+            byte_patch{0x0062bf6b, "\x68", "\x42"},
+         },
+      },
    },
 
    // exe_id_Steam
@@ -183,6 +204,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
                byte_patch{0x00638d9e, "\x41\x89\x0d", "\x0f\x1f\x00"},
                byte_patch{0x00638dc8, "\x40\xa3", "\x66\x90"},
             },
+      },
+
+      patch_set{
+         .name = "PropGenerator::Update Loop Exit Condition",
+
+         .byte_patches = {
+            byte_patch{0x0062aedb, "\x68", "\x42"},
+         },
       },
    },
 };
