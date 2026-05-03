@@ -1,10 +1,11 @@
 #include "pch.h"
 
 #include "apply_patches.hpp"
-#include "cfile.hpp"
 #include "exe_table.hpp"
 #include "game_tables.hpp"
 #include "patch_table.hpp"
+
+#include "lib/cfile.hpp"
 
 static const uintptr_t unrelocated_executable_base = 0x400000;
 

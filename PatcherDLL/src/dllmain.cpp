@@ -2,7 +2,8 @@
 #include "pch.h"
 
 #include "apply_patches.hpp"
-#include "slim_vector.hpp"
+
+#include "lib/slim_vector.hpp"
 
 void install_patches();
 

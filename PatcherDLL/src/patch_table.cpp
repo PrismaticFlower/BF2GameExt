@@ -81,6 +81,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             byte_patch{0x0073d348, "\x88\x44\x71\x01", "\x8b\x54\x24\x40"},
          },
       },
+
+      patch_set{
+         .name = "BlurEffect::Render Downsize Clamp",
+
+         .patches = {
+            patch{0x00a69698, 0x00409755, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
+         },
+      },
    },
    
    // exe_id_GoG
@@ -147,6 +155,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             byte_patch{0x0062bf6b, "\x68", "\x42"},
          },
       },
+
+      patch_set{
+         .name = "BlurEffect::Render Downsize Clamp",
+
+         .patches = {
+            patch{0x00797f48, 0x0040f8d0, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
+         },
+      },
    },
 
    // exe_id_Steam
@@ -211,6 +227,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
 
          .byte_patches = {
             byte_patch{0x0062aedb, "\x68", "\x42"},
+         },
+      },
+
+      patch_set{
+         .name = "BlurEffect::Render Downsize Clamp",
+
+         .patches = {
+            patch{0x00796fa8, 0x0040f8d0, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
          },
       },
    },

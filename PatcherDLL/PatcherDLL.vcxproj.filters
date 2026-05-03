@@ -21,7 +21,7 @@
     <ClInclude Include="src\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\slim_vector.hpp">
+    <ClInclude Include="src\lib\slim_vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\patch_table.hpp">
@@ -30,7 +30,7 @@
     <ClInclude Include="src\apply_patches.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cfile.hpp">
+    <ClInclude Include="src\lib\cfile.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -43,6 +43,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\shims.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\lib\utility.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,7 +62,7 @@
     <ClCompile Include="src\apply_patches.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cfile.cpp">
+    <ClCompile Include="src\lib\cfile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\exe_table.cpp">
@@ -71,10 +74,18 @@
     <ClCompile Include="src\shims\ReadTerrain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\shims\BlurEffect_Render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="src\shims\BlurEffect_Render_Trampoline.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
   </ItemGroup>
 </Project>

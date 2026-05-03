@@ -3,7 +3,8 @@
 #include <stdint.h>
 
 #include "exe_table.hpp"
-#include "slim_vector.hpp"
+
+#include "lib/slim_vector.hpp"
 
 struct patch_flags {
    /// @brief Address represents a file offset instead of a virtual an unrelocated virtual address.

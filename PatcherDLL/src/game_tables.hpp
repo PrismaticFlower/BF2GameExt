@@ -3,13 +3,15 @@
 #include <stdint.h>
 
 #include "exe_table.hpp"
-#include "slim_vector.hpp"
+
+#include "lib/slim_vector.hpp"
 
 const uint32_t texture_table_size = 0x2000;
 
 // Names guessed either from context or from BF1 Mac executable. Could be wrong.
 struct PblHashTable;
 struct RedTexture;
+struct BlurEffect;
 
 // Holds pointers that can be used to access information about the game in patch functions without
 // having to handle exe differences in those functions.
@@ -25,8 +27,14 @@ struct function_table_t {
    // Utility Functions
    void* (*PblHashTable_Find)(void* table, uint32_t tableSize, uint32_t hash) = nullptr;
 
+   // Renderer Functions
+   void (*RedRenderer_pcGetViewportExtents)(float* minX, float* minY, float* maxX, float* maxY) = nullptr;
+
    // Chunk Reader Functions
    void (*ReadTerrain)(void* reader) = nullptr;
+
+   // Class Pointer Functions
+   void(__thiscall* BlurEffect_Render)(BlurEffect* self, uint32_t unkn_flags) = nullptr;
 };
 
 void initialize_game_tables(const exe_id exe, const uintptr_t relocated_executable_base);

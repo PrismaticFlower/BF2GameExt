@@ -18,7 +18,11 @@ struct variable_table_init {
 struct function_table_init {
    uintptr_t PblHashTable_Find = 0;
 
+   uintptr_t RedRenderer_pcGetViewportExtents = 0;
+
    uintptr_t ReadTerrain = 0;
+
+   uintptr_t BlurEffect_Render = 0;
 };
 
 static variable_table_init variable_init_tables[EXE_COUNT] = {
@@ -52,21 +56,33 @@ static function_table_init function_init_tables[EXE_COUNT] = {
    function_table_init{
       .PblHashTable_Find = 0x007e1a40,
 
+      .RedRenderer_pcGetViewportExtents = 0x00805f40,
+
       .ReadTerrain = 0x007e5e10,
+
+      .BlurEffect_Render = 0x0077a930,
    },
 
    // exe_id_GoG
    function_table_init{
       .PblHashTable_Find = 0x00727ed0,
 
+      .RedRenderer_pcGetViewportExtents = 0x006b9730,
+
       .ReadTerrain = 0x006c34f0,
+
+      .BlurEffect_Render = 0x0040f8d0,
    },
 
    // exe_id_Steam
    function_table_init{
       .PblHashTable_Find = 0x00726e00,
 
+      .RedRenderer_pcGetViewportExtents = 0x006b86a0,
+
       .ReadTerrain = 0x006c2460,
+
+      .BlurEffect_Render = 0x0040f8d0,
    },
 };
 
@@ -112,7 +128,11 @@ static void initialize_function_table(const exe_id exe, const uintptr_t relocate
    function_table = {
       INIT_TABLE_ENTRY(PblHashTable_Find),
 
+      INIT_TABLE_ENTRY(RedRenderer_pcGetViewportExtents),
+
       INIT_TABLE_ENTRY(ReadTerrain),
+
+      INIT_TABLE_ENTRY(BlurEffect_Render),
    };
 }
 
