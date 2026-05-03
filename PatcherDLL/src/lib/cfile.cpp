@@ -24,6 +24,13 @@ void cfile::printf(char const* const format, ...) const
    va_end(args);
 }
 
+void cfile::write(const void* bytes, size_t count)
+{
+   if (not file) return;
+
+   fwrite(bytes, 1, count, file);
+}
+
 cfile::operator bool() const noexcept
 {
    return file;

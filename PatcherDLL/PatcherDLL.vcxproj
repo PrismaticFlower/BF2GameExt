@@ -133,6 +133,7 @@
     <ClCompile Include="src\game_tables.cpp" />
     <ClCompile Include="src\shims\BlurEffect_Render.cpp" />
     <ClCompile Include="src\shims\ReadTerrain.cpp" />
+    <ClCompile Include="src\shims\Screenshot_RequestScreenshot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

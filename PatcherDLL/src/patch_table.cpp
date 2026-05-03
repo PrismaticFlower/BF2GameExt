@@ -163,6 +163,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             patch{0x00797f48, 0x0040f8d0, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
          },
       },
+
+      patch_set{
+         .name = "Screenshot::RequestScreenshot Redirect",
+
+         .patches = {
+            patch{0x00534291, 0x1c0b7b, (uintptr_t)(&Screenshot_RequestScreenshot_Shim), {.replacement_relative_for_call = true}},
+         },
+      },
    },
 
    // exe_id_Steam
@@ -235,6 +243,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
 
          .patches = {
             patch{0x00796fa8, 0x0040f8d0, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
+         },
+      },
+
+      patch_set{
+         .name = "Screenshot::RequestScreenshot Redirect",
+
+         .patches = {
+            patch{0x00533521, 0x1c081b, (uintptr_t)(&Screenshot_RequestScreenshot_Shim), {.replacement_relative_for_call = true}},
          },
       },
    },

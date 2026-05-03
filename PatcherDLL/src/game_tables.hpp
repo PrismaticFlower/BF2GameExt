@@ -8,6 +8,8 @@
 
 const uint32_t texture_table_size = 0x2000;
 
+struct IDirect3DDevice9;
+
 // Names guessed either from context or from BF1 Mac executable. Could be wrong.
 struct PblHashTable;
 struct RedTexture;
@@ -20,6 +22,10 @@ struct variable_table_t {
 
    RedTexture** terrainNullDetailTexture = nullptr;
    RedTexture** terrainWhiteTexture = nullptr;
+
+   // Be careful how you use this one. If the user is also running under Shader Patch
+   // the wrong call could crash the game.
+   IDirect3DDevice9** d3dDevice = nullptr;
 };
 
 // Holds function pointers from the game's executable. Can be used in patch functions.

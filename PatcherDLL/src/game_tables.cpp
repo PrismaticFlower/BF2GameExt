@@ -13,6 +13,8 @@ struct variable_table_init {
 
    uintptr_t terrainNullDetailTexture = 0;
    uintptr_t terrainWhiteTexture = 0;
+
+   uintptr_t d3dDevice = 0;
 };
 
 struct function_table_init {
@@ -32,6 +34,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
 
       .terrainNullDetailTexture = 0x00edd114,
       .terrainWhiteTexture = 0x00edd11c,
+
+      .d3dDevice = 0x00d63fd4,
    },
 
    // exe_id_GoG
@@ -40,6 +44,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
 
       .terrainNullDetailTexture = 0x009ca6cc,
       .terrainWhiteTexture = 0x009ca6d0,
+
+      .d3dDevice = 0x007f6dec,
    },
 
    // exe_id_Steam
@@ -48,6 +54,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
 
       .terrainNullDetailTexture = 0x009c922c,
       .terrainWhiteTexture = 0x009c9230,
+
+      .d3dDevice = 0x007f594c,
    },
 };
 
@@ -111,6 +119,8 @@ static void initialize_variable_table(const exe_id exe, const uintptr_t relocate
 
       INIT_TABLE_ENTRY(terrainNullDetailTexture),
       INIT_TABLE_ENTRY(terrainWhiteTexture),
+
+      INIT_TABLE_ENTRY(d3dDevice),
    };
 
 #undef INIT_TABLE_ENTRY
