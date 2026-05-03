@@ -8,6 +8,7 @@ Tool for patching SWBF2 (2005) to extend it's memory limits and fix bugs.
 - SkyObjectClass Limit Extension. This prevents a buffer overflow when too many sky objects were created that could crash the game.
 - Terrain Detail Map Cleanup. This fixes a crash with multiple maps in a playlist and switching to one without a terrain detail map after playing another one.
 - PropGenerator Update Loop Exit Condition. This fixes a crash where by while updating foliage objects the game will read pass the end of the cluster object array. This is caused by game sometimes branching over the bounds check for the array, typically when using very high Field of Views. 
+- BlurEffect::Render Downsize Clamp. This fixes the water normal maps (or scope blur intermediate target) sometimes being overlaid onto the world when using the blur effect. 
 
 ## Supported Versions
 
