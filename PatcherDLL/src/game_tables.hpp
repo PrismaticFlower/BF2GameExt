@@ -26,6 +26,8 @@ struct variable_table_t {
    // Be careful how you use this one. If the user is also running under Shader Patch
    // the wrong call could crash the game.
    IDirect3DDevice9** d3dDevice = nullptr;
+
+   bool* _pcLoggingEnabled = nullptr;
 };
 
 // Holds function pointers from the game's executable. Can be used in patch functions.
@@ -41,6 +43,10 @@ struct function_table_t {
 
    // Class Pointer Functions
    void(__thiscall* BlurEffect_Render)(BlurEffect* self, uint32_t unkn_flags) = nullptr;
+
+   // Logging Functions
+   void (*RedWarning_Init)() = nullptr;
+   void (*RedWarning_SetDestinationMinSeverity)(int destination, int severity) = nullptr;
 };
 
 void initialize_game_tables(const exe_id exe, const uintptr_t relocated_executable_base);

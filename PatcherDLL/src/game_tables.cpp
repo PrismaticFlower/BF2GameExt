@@ -15,6 +15,8 @@ struct variable_table_init {
    uintptr_t terrainWhiteTexture = 0;
 
    uintptr_t d3dDevice = 0;
+
+   uintptr_t _pcLoggingEnabled = 0;
 };
 
 struct function_table_init {
@@ -25,6 +27,9 @@ struct function_table_init {
    uintptr_t ReadTerrain = 0;
 
    uintptr_t BlurEffect_Render = 0;
+
+   uintptr_t RedWarning_Init = 0;
+   uintptr_t RedWarning_SetDestinationMinSeverity = 0;
 };
 
 static variable_table_init variable_init_tables[EXE_COUNT] = {
@@ -36,6 +41,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
       .terrainWhiteTexture = 0x00edd11c,
 
       .d3dDevice = 0x00d63fd4,
+
+      ._pcLoggingEnabled = 0x00adb69e,
    },
 
    // exe_id_GoG
@@ -46,6 +53,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
       .terrainWhiteTexture = 0x009ca6d0,
 
       .d3dDevice = 0x007f6dec,
+
+      ._pcLoggingEnabled = 0x01eb029a,
    },
 
    // exe_id_Steam
@@ -56,6 +65,8 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
       .terrainWhiteTexture = 0x009c9230,
 
       .d3dDevice = 0x007f594c,
+
+      ._pcLoggingEnabled = 0x01eaede6,
    },
 };
 
@@ -69,6 +80,9 @@ static function_table_init function_init_tables[EXE_COUNT] = {
       .ReadTerrain = 0x007e5e10,
 
       .BlurEffect_Render = 0x0077a930,
+
+      .RedWarning_Init = 0x007e3c20,
+      .RedWarning_SetDestinationMinSeverity = 0x007e3560,
    },
 
    // exe_id_GoG
@@ -80,6 +94,9 @@ static function_table_init function_init_tables[EXE_COUNT] = {
       .ReadTerrain = 0x006c34f0,
 
       .BlurEffect_Render = 0x0040f8d0,
+
+      .RedWarning_Init = 0x006f7f70,
+      .RedWarning_SetDestinationMinSeverity = 0x006f8350,
    },
 
    // exe_id_Steam
@@ -91,6 +108,9 @@ static function_table_init function_init_tables[EXE_COUNT] = {
       .ReadTerrain = 0x006c2460,
 
       .BlurEffect_Render = 0x0040f8d0,
+
+      .RedWarning_Init = 0x006f6ea0,
+      .RedWarning_SetDestinationMinSeverity = 0x006f7280,
    },
 };
 
@@ -121,6 +141,8 @@ static void initialize_variable_table(const exe_id exe, const uintptr_t relocate
       INIT_TABLE_ENTRY(terrainWhiteTexture),
 
       INIT_TABLE_ENTRY(d3dDevice),
+
+      INIT_TABLE_ENTRY(_pcLoggingEnabled),
    };
 
 #undef INIT_TABLE_ENTRY
@@ -143,6 +165,9 @@ static void initialize_function_table(const exe_id exe, const uintptr_t relocate
       INIT_TABLE_ENTRY(ReadTerrain),
 
       INIT_TABLE_ENTRY(BlurEffect_Render),
+
+      INIT_TABLE_ENTRY(RedWarning_Init),
+      INIT_TABLE_ENTRY(RedWarning_SetDestinationMinSeverity),
    };
 }
 

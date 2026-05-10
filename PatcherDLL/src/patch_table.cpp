@@ -171,6 +171,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             patch{0x00534291, 0x1c0b7b, (uintptr_t)(&Screenshot_RequestScreenshot_Shim), {.replacement_relative_for_call = true}},
          },
       },
+
+      patch_set{
+         .name = "Logging Enablement",
+
+         .patches = {
+            patch{0x006186e3, 0xdf889, (uintptr_t)(&RedWarning_Init_Shim), {.replacement_relative_for_call = true}},
+         },
+      },
    },
 
    // exe_id_Steam
@@ -251,6 +259,14 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
 
          .patches = {
             patch{0x00533521, 0x1c081b, (uintptr_t)(&Screenshot_RequestScreenshot_Shim), {.replacement_relative_for_call = true}},
+         },
+      },
+
+      patch_set{
+         .name = "Logging Enablement",
+
+         .patches = {
+            patch{0x0061766c, 0xdf830, (uintptr_t)(&RedWarning_Init_Shim), {.replacement_relative_for_call = true}},
          },
       },
    },

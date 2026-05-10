@@ -6,6 +6,8 @@ void ReadTerrain_Shim(void* reader);
 
 void Screenshot_RequestScreenshot_Shim();
 
+void RedWarning_Init_Shim();
+
 // .asm declarations
 //
 // These functions may have __thiscall non-standard calling conventions. Do not try call them directly.

@@ -10,6 +10,7 @@ Tool for patching SWBF2 (2005) to extend it's memory limits and fix bugs.
 - PropGenerator Update Loop Exit Condition. This fixes a crash where by while updating foliage objects the game will read pass the end of the cluster object array. This is caused by game sometimes branching over the bounds check for the array, typically when using very high Field of Views. 
 - BlurEffect::Render Downsize Clamp. This fixes the water normal maps (or scope blur intermediate target) sometimes being overlaid onto the world when using the blur effect. 
 - Screenshot::RequestScreenshot Redirect. GoG/Steam Only. This fixes using Print Screen to capture a screenshot crashing the game.
+- Logging Enablement. GoG/Steam Only. This allows passing `/log` on the commandline to activate the games log file (`BFront2.log`). Be aware that far less info is printed in the "normal" builds of the game. This is mostly useful for modders looking to debug their Lua scripts.
 
 
 ## Supported Versions

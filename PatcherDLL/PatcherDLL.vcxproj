@@ -113,6 +113,7 @@
     <ClInclude Include="src\lib\cfile.hpp" />
     <ClInclude Include="src\exe_table.hpp" />
     <ClInclude Include="src\framework.h" />
+    <ClInclude Include="src\lib\commandline_args.hpp" />
     <ClInclude Include="src\lib\utility.hpp" />
     <ClInclude Include="src\patch_table.hpp" />
     <ClInclude Include="src\pch.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="src\lib\cfile.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\exe_table.cpp" />
+    <ClCompile Include="src\lib\commandline_args.cpp" />
     <ClCompile Include="src\patch_table.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -133,6 +135,7 @@
     <ClCompile Include="src\game_tables.cpp" />
     <ClCompile Include="src\shims\BlurEffect_Render.cpp" />
     <ClCompile Include="src\shims\ReadTerrain.cpp" />
+    <ClCompile Include="src\shims\RedWarning_Init.cpp" />
     <ClCompile Include="src\shims\Screenshot_RequestScreenshot.cpp" />
   </ItemGroup>
   <ItemGroup>
