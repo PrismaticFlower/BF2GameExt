@@ -8,6 +8,9 @@ void Screenshot_RequestScreenshot_Shim();
 
 void RedWarning_Init_Shim();
 
+int __stdcall RedWarning_DialogBoxParamA(void* hInstance, const char* lpTemplateName,
+                                         void* hWndParent, void* lpDialogFunc, long dwInitParam);
+
 // .asm declarations
 //
 // These functions may have __thiscall non-standard calling conventions. Do not try call them directly.

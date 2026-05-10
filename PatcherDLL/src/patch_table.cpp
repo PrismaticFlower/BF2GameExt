@@ -179,6 +179,18 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             patch{0x006186e3, 0xdf889, (uintptr_t)(&RedWarning_Init_Shim), {.replacement_relative_for_call = true}},
          },
       },
+
+      patch_set{
+         .name = "RedWarning::DialogBoxMessage Fix",
+
+         .patches = {
+            patch{0x006f7c3b, 0x0076c3e8, (uintptr_t)(&RedWarning_DialogBoxParamA), {.expected_is_va = true, .replacement_relative_for_call = true}},
+         },
+
+         .byte_patches = {
+            byte_patch{0x006f7c39, "\xff\x15", "\x90\xe8"}, // nop, relative call imm32
+         },
+      },
    },
 
    // exe_id_Steam
@@ -267,6 +279,18 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
 
          .patches = {
             patch{0x0061766c, 0xdf830, (uintptr_t)(&RedWarning_Init_Shim), {.replacement_relative_for_call = true}},
+         },
+      },
+
+      patch_set{
+         .name = "RedWarning::DialogBoxMessage Fix",
+
+         .patches = {
+            patch{0x006f6b6b, 0x0076b400, (uintptr_t)(&RedWarning_DialogBoxParamA), {.expected_is_va = true, .replacement_relative_for_call = true}},
+         },
+
+         .byte_patches = {
+            byte_patch{0x006f6b69, "\xff\x15", "\x90\xe8"}, // nop, relative call imm32
          },
       },
    },

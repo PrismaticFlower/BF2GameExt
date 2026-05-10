@@ -89,6 +89,9 @@
     <ClCompile Include="src\lib\commandline_args.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\shims\RedWarning_DialogBoxParamA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
