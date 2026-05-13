@@ -32,7 +32,7 @@ struct function_table_init {
    uintptr_t RedWarning_SetDestinationMinSeverity = 0;
 };
 
-static variable_table_init variable_init_tables[EXE_COUNT] = {
+static const variable_table_init variable_init_tables[EXE_COUNT] = {
    // exe_id_BF2_modtools
    variable_table_init{
       .textureTable = 0x00d4f994,
@@ -70,7 +70,7 @@ static variable_table_init variable_init_tables[EXE_COUNT] = {
    },
 };
 
-static function_table_init function_init_tables[EXE_COUNT] = {
+static const function_table_init function_init_tables[EXE_COUNT] = {
    // exe_id_BF2_modtools
    function_table_init{
       .PblHashTable_Find = 0x007e1a40,
