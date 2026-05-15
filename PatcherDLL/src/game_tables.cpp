@@ -16,6 +16,8 @@ struct variable_table_init {
 
    uintptr_t d3dDevice = 0;
 
+   uintptr_t GameState_shellState = 0;
+
    uintptr_t _pcLoggingEnabled = 0;
 };
 
@@ -27,6 +29,9 @@ struct function_table_init {
    uintptr_t ReadTerrain = 0;
 
    uintptr_t BlurEffect_Render = 0;
+
+   uintptr_t GameState_ShellState_Enter = 0;
+   uintptr_t GameState_MissionState_Enter = 0;
 
    uintptr_t RedWarning_Init = 0;
    uintptr_t RedWarning_SetDestinationMinSeverity = 0;
@@ -42,6 +47,8 @@ static const variable_table_init variable_init_tables[EXE_COUNT] = {
 
       .d3dDevice = 0x00d63fd4,
 
+      .GameState_shellState = 0x00ac6d84,
+
       ._pcLoggingEnabled = 0x00adb69e,
    },
 
@@ -54,6 +61,8 @@ static const variable_table_init variable_init_tables[EXE_COUNT] = {
 
       .d3dDevice = 0x007f6dec,
 
+      .GameState_shellState = 0x007ec968,
+
       ._pcLoggingEnabled = 0x01eb029a,
    },
 
@@ -65,6 +74,8 @@ static const variable_table_init variable_init_tables[EXE_COUNT] = {
       .terrainWhiteTexture = 0x009c9230,
 
       .d3dDevice = 0x007f594c,
+
+      .GameState_shellState = 0x007eb998,
 
       ._pcLoggingEnabled = 0x01eaede6,
    },
@@ -81,6 +92,9 @@ static const function_table_init function_init_tables[EXE_COUNT] = {
 
       .BlurEffect_Render = 0x0077a930,
 
+      .GameState_ShellState_Enter = 0x00407ac7,
+      .GameState_MissionState_Enter = 0x00407fb8,
+
       .RedWarning_Init = 0x007e3c20,
       .RedWarning_SetDestinationMinSeverity = 0x007e3560,
    },
@@ -95,6 +109,9 @@ static const function_table_init function_init_tables[EXE_COUNT] = {
 
       .BlurEffect_Render = 0x0040f8d0,
 
+      .GameState_ShellState_Enter = 0x0053c6d0,
+      .GameState_MissionState_Enter = 0x0053c830,
+
       .RedWarning_Init = 0x006f7f70,
       .RedWarning_SetDestinationMinSeverity = 0x006f8350,
    },
@@ -108,6 +125,9 @@ static const function_table_init function_init_tables[EXE_COUNT] = {
       .ReadTerrain = 0x006c2460,
 
       .BlurEffect_Render = 0x0040f8d0,
+
+      .GameState_ShellState_Enter = 0x0053b980,
+      .GameState_MissionState_Enter = 0x0053bae0,
 
       .RedWarning_Init = 0x006f6ea0,
       .RedWarning_SetDestinationMinSeverity = 0x006f7280,
@@ -142,6 +162,8 @@ static void initialize_variable_table(const exe_id exe, const uintptr_t relocate
 
       INIT_TABLE_ENTRY(d3dDevice),
 
+      INIT_TABLE_ENTRY(GameState_shellState),
+
       INIT_TABLE_ENTRY(_pcLoggingEnabled),
    };
 
@@ -165,6 +187,9 @@ static void initialize_function_table(const exe_id exe, const uintptr_t relocate
       INIT_TABLE_ENTRY(ReadTerrain),
 
       INIT_TABLE_ENTRY(BlurEffect_Render),
+
+      INIT_TABLE_ENTRY(GameState_ShellState_Enter),
+      INIT_TABLE_ENTRY(GameState_MissionState_Enter),
 
       INIT_TABLE_ENTRY(RedWarning_Init),
       INIT_TABLE_ENTRY(RedWarning_SetDestinationMinSeverity),

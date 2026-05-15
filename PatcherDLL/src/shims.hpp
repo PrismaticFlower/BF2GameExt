@@ -19,4 +19,10 @@ extern "C" {
 
 // void __thiscall BlurEffect_Render_Trampoline(BlurEffect* self, uint32_t unkn_flags);
 void BlurEffect_Render_Trampoline();
+
+// void __thiscall GameState_ShellState_Enter_Trampoline(State* self);
+void GameState_ShellState_Enter_Trampoline();
+
+// void __thiscall GameState_MissionState_Enter_Trampoline(State* self);
+void GameState_MissionState_Enter_Trampoline();
 }

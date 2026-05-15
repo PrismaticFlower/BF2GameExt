@@ -89,6 +89,15 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             patch{0x00a69698, 0x00409755, (uintptr_t)(&BlurEffect_Render_Trampoline), {.expected_is_va = true}},
          },
       },
+
+      patch_set{
+         .name = "DLC Mission List Initialization Fix",
+
+         .patches = {
+            patch{0x00a2bfcc, 0x00407ac7, (uintptr_t)(&GameState_ShellState_Enter_Trampoline), {.expected_is_va = true}},
+            patch{0x00a2bb24, 0x00407fb8, (uintptr_t)(&GameState_MissionState_Enter_Trampoline), {.expected_is_va = true}},
+         },
+      },
    },
    
    // exe_id_GoG
@@ -191,6 +200,15 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
             byte_patch{0x006f7c39, "\xff\x15", "\x90\xe8"}, // nop, relative call imm32
          },
       },
+
+      patch_set{
+         .name = "DLC Mission List Initialization Fix",
+
+         .patches = {
+            patch{0x007a09e0, 0x0053c6d0, (uintptr_t)(&GameState_ShellState_Enter_Trampoline), {.expected_is_va = true}},
+            patch{0x007a0a60, 0x0053c830, (uintptr_t)(&GameState_MissionState_Enter_Trampoline), {.expected_is_va = true}},
+         },
+      },
    },
 
    // exe_id_Steam
@@ -291,6 +309,15 @@ const slim_vector<patch_set> patch_lists[EXE_COUNT] = {
 
          .byte_patches = {
             byte_patch{0x006f6b69, "\xff\x15", "\x90\xe8"}, // nop, relative call imm32
+         },
+      },
+
+      patch_set{
+         .name = "DLC Mission List Initialization Fix",
+
+         .patches = {
+            patch{0x0079fb84, 0x0053b980, (uintptr_t)(&GameState_ShellState_Enter_Trampoline), {.expected_is_va = true}},
+            patch{0x0079fc04, 0x0053bae0, (uintptr_t)(&GameState_MissionState_Enter_Trampoline), {.expected_is_va = true}},
          },
       },
    },

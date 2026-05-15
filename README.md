@@ -12,6 +12,7 @@ Tool for patching SWBF2 (2005) to extend it's memory limits and fix bugs.
 - Screenshot::RequestScreenshot Redirect. GoG/Steam Only. This fixes using Print Screen to capture a screenshot crashing the game.
 - Logging Enablement. GoG/Steam Only. This allows passing `/log` on the commandline to activate the games log file (`BFront2.log`). Be aware that far less info is printed in the "normal" builds of the game. This is mostly useful for modders looking to debug their Lua scripts.
 - RedWarning::DialogBoxMessage Fix. GoG/Steam Only. This fixes error message dialogs not being shown. 
+- DLC Mission List Initialization Fix. This fixes not being able to launch into mod maps via the commandline.
 
 ## Supported Versions
 

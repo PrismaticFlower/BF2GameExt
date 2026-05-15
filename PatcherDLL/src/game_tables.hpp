@@ -3,6 +3,7 @@
 #include <stdint.h>
 
 #include "exe_table.hpp"
+#include "game_types.hpp"
 
 #include "lib/slim_vector.hpp"
 
@@ -27,6 +28,8 @@ struct variable_table_t {
    // the wrong call could crash the game.
    IDirect3DDevice9** d3dDevice = nullptr;
 
+   GameState::State* GameState_shellState = nullptr;
+
    bool* _pcLoggingEnabled = nullptr;
 };
 
@@ -43,6 +46,9 @@ struct function_table_t {
 
    // Class Pointer Functions
    void(__thiscall* BlurEffect_Render)(BlurEffect* self, uint32_t unkn_flags) = nullptr;
+
+   void(__thiscall* GameState_ShellState_Enter)(GameState::State* self) = nullptr;
+   void(__thiscall* GameState_MissionState_Enter)(GameState::State* self) = nullptr;
 
    // Logging Functions
    void (*RedWarning_Init)() = nullptr;

@@ -51,6 +51,9 @@
     <ClInclude Include="src\lib\commandline_args.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\game_types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\dllmain.cpp">
@@ -92,6 +95,9 @@
     <ClCompile Include="src\shims\RedWarning_DialogBoxParamA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\shims\GameState_State_Enter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
@@ -100,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <MASM Include="src\shims\BlurEffect_Render_Trampoline.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="src\shims\GameState_State_Enter_Trampoline.asm">
       <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
